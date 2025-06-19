@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد قبول - جامعة الملك سعود</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <img src="logo.png" alt="شعار الجامعة" class="logo"> <!-- تأكد من وضع المسار الصحيح لشعار الجامعة -->
+    <h2> بوابة القبول الأكاديمي</h2>
+    <div class="info">
+        <strong>اسم الطالب:</strong> <span id="studentName">عبالعزيز خالد عبده بكري </span>
+    </div>
+    <div class="info">
+        <strong>التخصص:</strong> <span id="studentMajor">  امن سيبراني </span>
+    </div>
+    <div class="info">
+        <strong>الدرجة:</strong> <span id="degree">بكالوريوس</span>
+    </div>
+    <div class="info">
+        <strong>حالة القبول:</strong> <span id="admissionStatus">مقبول</span>
+    </div>
+
+    <button class="button" id="confirmButton">تأكيد القبول</button>
+    <button class="button cancel" id="cancelButton">إلغاء القبول</button>
+</div>
+
+<div class="footer">
+    &copy; 2025 جامعة الملك سعود. جميع الحقوق محفوظة.
+</div>
+
+<script>
+    document.getElementById('confirmButton').onclick = function() {
+        window.location.href = 'payments.html';
+    };
+    document.getElementById('cancelButton').onclick = function() {
+        alert('تم إلغاء القبول.');
+        window.location.href = 'cancel.html';
+
+    };
+</script>
+
+</body>
+</html>
