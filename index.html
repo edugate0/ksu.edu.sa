@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول - بوابة القبول</title>
+  <!-- استخدام Tailwind CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <style>
+    /* تنسيقات أساسية لمحاكاة تصميم موقع جامعة الأميرة نورة */
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #f2f9f8;
+      color:rgb(14, 65, 192);
+      padding: 15px 0;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      width: 80px;
+      height: 50px;
+    }
+    header h1 {
+      font-size: 1em;
+      margin: 0 10px;
+    }
+    nav a {
+      color: #1c24fa;
+      font-weight: bold;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #090842;
+    }
+    .container {
+      max-width: 630px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    .btn {
+      background-color: #100366;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #005580;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    .page {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- رأس الموقع -->
+  <header>
+    <div class="container flex items-center justify-between px-4">
+      <div class="flex items-center">
+        <!-- استبدل رابط الشعار برابط شعار الجامعة الفعلي -->
+        <img src="logo.png" alt="شعار الجامعة">
+        <h1>بوابة القبول الأكاديمي</h1>
+      </div>
+      <nav>
+        <a href="#">الرئيسية</a>
+        <a href="#">عن الجامعة</a>
+        <a href="#">القبول</a>
+        <a href="#">التواصل</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <div id="content" class="container mt-8 px-4">
+    <div id="loginPage" class="page min-h-screen flex items-center justify-center">
+      <div class="w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">تسجيل الدخول</h2>
+        <input type="text" id="identityNumber" placeholder="الرقم الجامعي">
+        <input type="password" id="password" placeholder="كلمة المرور">
+        <div class="flex items-center mb-4">
+          <input type="checkbox" id="rememberMe" class="mr-2">
+          <label for="rememberMe">تذكرني</label>
+        </div>
+        <button onclick="handleLogin()" class="btn w-full">تسجيل الدخول</button>
+        <div id="message" class="text-red-500 mt-4 text-center"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // عند تحميل الصفحة، قم بملء رقم الطلب إذا كان محفوظًا
+    window.onload = function() {
+      const savedIdentity = localStorage.getItem('savedIdentity');
+      if (savedIdentity) {
+        document.getElementById('identityNumber').value = savedIdentity;
+        document.getElementById('rememberMe').checked = true;
+      }
+    }
+
+    // دالة معالجة تسجيل الدخول والتحقق من البيانات
+    function handleLogin() {
+      const identityNumber = document.getElementById('identityNumber').value.trim();
+      const password = document.getElementById('password').value;
+      const rememberMe = document.getElementById('rememberMe').checked;
+      const messageDiv = document.getElementById('message');
+      messageDiv.textContent = '';
+
+      // بيانات الاعتماد الثابتة
+      const users = [
+        { id: '469225965', pass: 'C05561337', redirect: 'stud.html' },
+        { id: '467325963', pass: 'C05561334', redirect: 'studs.html' }
+      ];
+
+      // البحث عن المستخدم المطابق
+      const user = users.find(u => u.id === identityNumber && u.pass === password);
+
+      if (user) {
+        if (rememberMe) {
+          localStorage.setItem('savedIdentity', identityNumber);
+        } else {
+          localStorage.removeItem('savedIdentity');
+        }
+        window.location.href = user.redirect;
+      } else {
+        messageDiv.textContent = 'خطأ: رقم الطلب أو كلمة المرور غير صحيحة.';
+      }
+    }
+  </script>
+</body>
+</html>

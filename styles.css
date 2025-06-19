@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 400px
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #007BFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: right;
+}
+
+h2 {
+    text-align: center;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 80px; /* حجم الشعار */
+}
+
+.info {
+    margin: 15px 0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.form-group {
+    margin: 15px 0;
+    width: 95%;
+}
+
+input {
+    width: calc(100% - 20px); /* يجعل عرض الحقل أقل قليلاً */
+    padding: 8px; /* حجم الحقل */
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    direction: rtl; /* الكتابة من اليمين لليسار */
+}
+
+.button {
+    display: block;
+    width: 25%;
+    padding: 10px;
+    margin: 10px 0;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+.button.cancel {
+    background-color: #dc3545;
+
+    
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* إضافة تنسيقات للهواتف المحمولة والأجهزة اللوحية */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    input {
+        padding: 6px; /* حجم الحقل في الأجهزة الصغيرة */
+    }
+    
+    .button {
+        padding: 8px; /* حجم الزر في الأجهزة الصغيرة */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 60px; /* حجم الشعار في الهواتف المحمولة */
+    }
+
+    input {
+        padding: 5px; /* حجم الحقل في الهواتف المحمولة */
+    }
+    
+    .button {
+        padding: 7px; /* حجم الزر في الهواتف المحمولة */
+    }
+}
