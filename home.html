@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة القبول - جامعة الملك سعود</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="شعار جامعة الملك سعود" class="university-logo">
+                    <div class="university-info">
+                        <h1>جامعة الملك سعود</h1>
+                        <p>بوابة القبول الإلكترونية</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary" onclick="showHelp()">
+                        <i class="fas fa-question-circle"></i>
+                        مساعدة
+                    </button>
+                    <button class="btn-primary" onclick="showLogin()">
+                        <i class="fas fa-sign-in-alt"></i>
+                        تسجيل الدخول
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-card">
+                    <div class="welcome-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h2>مبروك! تم قبولك في جامعة الملك سعود</h2>
+                    <p>نتشرف بانضمامك إلى أسرة جامعة الملك سعود</p>
+                </div>
+            </section>
+
+            <!-- Student Information -->
+            <section class="student-info-section">
+                <div class="info-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-user-graduate"></i> بيانات الطالبة</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>الاسم الكامل:</label>
+                                <span>راما محمد فياض العتيبي</span>
+                            </div>
+                            <div class="info-item">
+                                <label>رقم الهوية:</label>
+                                <span>1137708747</span>
+                            </div>
+                            <div class="info-item">
+                                <label>الجنسية:</label>
+                                <span>سعودية</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admission Details -->
+            <section class="admission-details-section">
+                <div class="info-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-certificate"></i> تفاصيل القبول</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="admission-info">
+                            <div class="admission-item highlight">
+                                <div class="admission-icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <div class="admission-details">
+                                    <h4>الكلية</h4>
+                                    <p>كلية الدراسات الإنسانية</p>
+                                </div>
+                            </div>
+                            
+                            <div class="admission-item highlight">
+                                <div class="admission-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="admission-details">
+                                    <h4>التخصص</h4>
+                                    <p>بكالوريوس علم النفس</p>
+                                </div>
+                            </div>
+                            
+                            <div class="admission-item">
+                                <div class="admission-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="admission-details">
+                                    <h4>العام الأكاديمي</h4>
+                                    <p>1447-1448 هـ (2025-2026 م)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="admission-item">
+                                <div class="admission-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="admission-details">
+                                    <h4>نوع الدراسة</h4>
+                                    <p>انتظام - دوام كامل</p>
+                                </div>
+                            </div>
+                            
+                            <div class="admission-item">
+                                <div class="admission-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div class="admission-details">
+                                    <h4>النسبة المكافئة</h4>
+                                    <p>84%</p>
+                                </div>
+                            </div>
+                            
+                            <div class="admission-item">
+                                <div class="admission-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="admission-details">
+                                    <h4>ترتيب القبول</h4>
+                                    <p>90 من أصل 250</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Action Buttons -->
+            <section class="actions-section">
+                <div class="actions-grid">
+                    <button class="action-btn confirm-btn" onclick="confirmAdmission()">
+                        <i class="fas fa-check-circle"></i>
+                        تأكيد القبول
+                    </button>
+                    <button class="action-btn download-btn" onclick="downloadLetter()">
+                        <i class="fas fa-download"></i>
+                        تحميل خطاب القبول
+                    </button>
+                    <button class="action-btn schedule-btn" onclick="scheduleOrientation()">
+                        <i class="fas fa-calendar-plus"></i>
+                        حجز موعد التوجيه
+                    </button>
+                    <button class="action-btn contact-btn" onclick="contactSupport()">
+                        <i class="fas fa-headset"></i>
+                        التواصل مع الدعم
+                    </button>
+                </div>
+            </section>
+
+            <!-- Important Notes -->
+            <section class="notes-section">
+                <div class="notes-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> ملاحظات مهمة</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul class="notes-list">
+                            <li><i class="fas fa-check"></i> يجب تأكيد القبول خلال 7 أيام من تاريخ الإعلان</li>
+                            <li><i class="fas fa-calendar-alt"></i> <strong>موعد تقديم الأوراق المطلوبة: 20 أغسطس 2025</strong></li>
+                            <li><i class="fas fa-check"></i> حضور جلسة التوجيه الأكاديمي إجباري</li>
+                            <li><i class="fas fa-check"></i> تسديد الرسوم الدراسية قبل بداية الفصل الدراسي</li>
+                            <li><i class="fas fa-check"></i> إحضار الأوراق المطلوبة كاملة عند التسجيل</li>
+                            <li><i class="fas fa-check"></i> التواصل مع المرشد الأكاديمي لاختيار المقررات</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>جامعة الملك سعود</h4>
+                    <p>الرياض، المملكة العربية السعودية</p>
+                    <p>ص.ب: 2454 الرياض 11451</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>روابط مفيدة</h4>
+                    <ul>
+                        <li><a href="#">البوابة الأكاديمية</a></li>
+                        <li><a href="#">نظام التعلم الإلكتروني</a></li>
+                        <li><a href="#">المكتبة الرقمية</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 جامعة الملك سعود. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> تأكيد القبول</h3>
+                <span class="close" onclick="closeModal('confirmationModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>هل أنت متأكدة من رغبتك في تأكيد القبول في تخصص علم النفس؟</p>
+                <p class="warning-text">تنبيه: لا يمكن التراجع عن هذا الإجراء بعد التأكيد</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="processConfirmation()">تأكيد القبول</button>
+                <button class="btn-secondary" onclick="closeModal('confirmationModal')">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content success-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> تم تأكيد القبول بنجاح</h3>
+            </div>
+            <div class="modal-body">
+                <div class="success-animation">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <p>تهانينا! تم تأكيد قبولك في تخصص علم النفس بنجاح</p>
+                <p>سيتم إرسال رسالة تأكيد على البريد الإلكتروني المسجل</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="closeModal('successModal')">حسناً</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

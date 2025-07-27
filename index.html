@@ -1,156 +1,444 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول - بوابة القبول</title>
-  <!-- استخدام Tailwind CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <style>
-    /* تنسيقات أساسية لمحاكاة تصميم موقع جامعة الأميرة نورة */
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color: #f5f7fa;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #f2f9f8;
-      color:rgb(14, 65, 192);
-      padding: 15px 0;
-    }
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header img {
-      width: 80px;
-      height: 50px;
-    }
-    header h1 {
-      font-size: 1em;
-      margin: 0 10px;
-    }
-    nav a {
-      color: #1c24fa;
-      font-weight: bold;
-      margin: 0 10px;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #090842;
-    }
-    .container {
-      max-width: 630px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    .btn {
-      background-color: #100366;
-      color: #fff;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .btn:hover {
-      background-color: #005580;
-    }
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 15px;
-    }
-    .page {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاستعلام عن القبول - جامعة الملك سعود</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .inquiry-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            direction: ltr;
+            text-align: right;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .inquiry-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .inquiry-btn:hover {
+            background: linear-gradient(45deg, #2980b9, #1f5f8b);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .inquiry-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 0.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3498db;
+        }
+        
+        .instructions h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.5rem;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+        
+        .instructions li::before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+    </style>
 </head>
 <body>
-  <!-- رأس الموقع -->
-  <header>
-    <div class="container flex items-center justify-between px-4">
-      <div class="flex items-center">
-        <!-- استبدل رابط الشعار برابط شعار الجامعة الفعلي -->
-        <img src="logo.png" alt="شعار الجامعة">
-        <h1>بوابة القبول الأكاديمي</h1>
-      </div>
-      <nav>
-        <a href="#">الرئيسية</a>
-        <a href="#">عن الجامعة</a>
-        <a href="#">القبول</a>
-        <a href="#">التواصل</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- المحتوى الرئيسي -->
-  <div id="content" class="container mt-8 px-4">
-    <div id="loginPage" class="page min-h-screen flex items-center justify-center">
-      <div class="w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-6 text-center">تسجيل الدخول</h2>
-        <input type="text" id="identityNumber" placeholder="الرقم الجامعي">
-        <input type="password" id="password" placeholder="كلمة المرور">
-        <div class="flex items-center mb-4">
-          <input type="checkbox" id="rememberMe" class="mr-2">
-          <label for="rememberMe">تذكرني</label>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="شعار جامعة الملك سعود" class="university-logo">
+                    <div class="university-info">
+                        <h1>جامعة الملك سعود</h1>
+                        <p>الاستعلام عن القبول</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary" onclick="showHelp()">
+                        <i class="fas fa-question-circle"></i>
+                        مساعدة
+                    </button>
+                </div>
+            </div>
         </div>
-        <button onclick="handleLogin()" class="btn w-full">تسجيل الدخول</button>
-        <div id="message" class="text-red-500 mt-4 text-center"></div>
-      </div>
-    </div>
-  </div>
+    </header>
 
-  <script>
-    // عند تحميل الصفحة، قم بملء رقم الطلب إذا كان محفوظًا
-    window.onload = function() {
-      const savedIdentity = localStorage.getItem('savedIdentity');
-      if (savedIdentity) {
-        document.getElementById('identityNumber').value = savedIdentity;
-        document.getElementById('rememberMe').checked = true;
-      }
-    }
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Instructions Section -->
+            <section class="instructions">
+                <h3><i class="fas fa-info-circle"></i> تعليمات الاستعلام</h3>
+                <ul>
+                    <li>أدخل رقم الهوية الوطنية كما هو مسجل في طلب القبول</li>
+                    <li>أدخل رقم الجوال المسجل في الطلب</li>
+                    <li>تأكد من صحة البيانات قبل الضغط على زر الاستعلام</li>
+                    <li>في حالة وجود مشكلة، يرجى التواصل مع الدعم الفني</li>
+                </ul>
+            </section>
 
-    // دالة معالجة تسجيل الدخول والتحقق من البيانات
-    function handleLogin() {
-      const identityNumber = document.getElementById('identityNumber').value.trim();
-      const password = document.getElementById('password').value;
-      const rememberMe = document.getElementById('rememberMe').checked;
-      const messageDiv = document.getElementById('message');
-      messageDiv.textContent = '';
+            <!-- Inquiry Form -->
+            <section class="inquiry-form">
+                <div class="card-header">
+                    <h2><i class="fas fa-search"></i> الاستعلام عن حالة القبول</h2>
+                    <p>أدخل بياناتك للاستعلام عن حالة طلب القبول</p>
+                </div>
+                
+                <form id="inquiryForm" onsubmit="submitInquiry(event)">
+                    <div class="form-group">
+                        <label for="nationalId">
+                            <i class="fas fa-id-card"></i>
+                            رقم الهوية الوطنية
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nationalId" 
+                            name="nationalId" 
+                            placeholder="أدخل رقم الهوية (10 أرقام)"
+                            maxlength="10"
+                            required
+                        >
+                        <div class="error-message" id="nationalIdError">رقم الهوية يجب أن يكون 10 أرقام</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mobileNumber">
+                            <i class="fas fa-mobile-alt"></i>
+                            رقم الجوال
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="mobileNumber" 
+                            name="mobileNumber" 
+                            placeholder="أدخل رقم الجوال (05xxxxxxxx)"
+                            maxlength="10"
+                            required
+                        >
+                        <div class="error-message" id="mobileError">رقم الجوال يجب أن يبدأ بـ 05 ويكون 10 أرقام</div>
+                    </div>
+                    
+                    <button type="submit" class="inquiry-btn" id="submitBtn">
+                        <i class="fas fa-search"></i>
+                        الاستعلام عن القبول
+                        <div class="loading-spinner" id="loadingSpinner"></div>
+                    </button>
+                </form>
+            </section>
 
-      // بيانات الاعتماد الثابتة
-      const users = [
-        { id: '469225965', pass: 'C05561337', redirect: 'stud.html' },
-        { id: '467325965', pass: 'C05561334', redirect: 'studs.html' },
-                { id: '467325962', pass: '1128978820', redirect: 'stu.html' }
+            <!-- Contact Section -->
+            <section class="notes-section">
+                <div class="notes-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-headset"></i> هل تحتاج مساعدة؟</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="contact-info">
+                            <p><i class="fas fa-phone"></i> الهاتف: 00966114670000</p>
+                            <p><i class="fas fa-envelope"></i> البريد الإلكتروني: admission@ksu.edu.sa</p>
+                            <p><i class="fas fa-clock"></i> ساعات العمل: من 8 صباحاً إلى 5 مساءً</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
-      ];
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>جامعة الملك سعود</h4>
+                    <p>الرياض، المملكة العربية السعودية</p>
+                    <p>ص.ب: 2454 الرياض 11451</p>
+                </div>
+                <div class="footer-section">
+                    <h4>التواصل</h4>
+                    <p><i class="fas fa-phone"></i> 00966114670000</p>
+                    <p><i class="fas fa-envelope"></i> info@ksu.edu.sa</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط مفيدة</h4>
+                    <ul>
+                        <li><a href="#">البوابة الأكاديمية</a></li>
+                        <li><a href="#">نظام التعلم الإلكتروني</a></li>
+                        <li><a href="#">المكتبة الرقمية</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 جامعة الملك سعود. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
 
-      // البحث عن المستخدم المطابق
-      const user = users.find(u => u.id === identityNumber && u.pass === password);
-
-      if (user) {
-        if (rememberMe) {
-          localStorage.setItem('savedIdentity', identityNumber);
-        } else {
-          localStorage.removeItem('savedIdentity');
+    <script>
+        // Form validation and submission
+        function submitInquiry(event) {
+            event.preventDefault();
+            
+            const nationalId = document.getElementById("nationalId").value;
+            const mobileNumber = document.getElementById("mobileNumber").value;
+            const submitBtn = document.getElementById("submitBtn");
+            const loadingSpinner = document.getElementById("loadingSpinner");
+            
+            // Reset error messages
+            hideAllErrors();
+            
+            // Validate inputs
+            if (!validateNationalId(nationalId)) {
+                showError("nationalIdError");
+                return;
+            }
+            
+            if (!validateMobileNumber(mobileNumber)) {
+                showError("mobileError");
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            loadingSpinner.style.display = "inline-block";
+            submitBtn.innerHTML = "; الاستعلام عن القبول <div class=\"loading-spinner\" style=\"display: inline-block;\"></div>";
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Check if the entered data matches our student
+                if (nationalId === "1137708747" && (mobileNumber === "0550552058" || mobileNumber === "0557880991")) {
+                    // Redirect to admission result page
+                    window.location.href = "home.html";
+                } else {
+                    // Show error for incorrect data
+                    showNotification("البيانات المدخلة غير صحيحة أو لا يوجد طلب قبول مطابق", "error");
+                    resetSubmitButton();
+                }
+            }, 2000);
         }
-        window.location.href = user.redirect;
-      } else {
-        messageDiv.textContent = 'خطأ: رقم الطلب أو كلمة المرور غير صحيحة.';
-      }
-    }
-  </script>
+        
+        function validateNationalId(nationalId) {
+            return /^\d{10}$/.test(nationalId);
+        }
+        
+        function validateMobileNumber(mobileNumber) {
+            return /^05\d{8}$/.test(mobileNumber);
+        }
+        
+        function showError(errorId) {
+            document.getElementById(errorId).style.display = "block";
+        }
+        
+        function hideAllErrors() {
+            const errors = document.querySelectorAll(".error-message");
+            errors.forEach(error => error.style.display = "none");
+        }
+        
+        function resetSubmitButton() {
+            const submitBtn = document.getElementById("submitBtn");
+            const loadingSpinner = document.getElementById("loadingSpinner");
+            
+            submitBtn.disabled = false;
+            loadingSpinner.style.display = "none";
+            submitBtn.innerHTML = "<i class=\"fas fa-search\"></i> الاستعلام عن القبول";
+        }
+        
+        // Input formatting
+        document.getElementById("nationalId").addEventListener("input", function(e) {
+            e.target.value = e.target.value.replace(/\D/g, "");
+        });
+        
+        document.getElementById("mobileNumber").addEventListener("input", function(e) {
+            e.target.value = e.target.value.replace(/\D/g, "");
+        });
+        
+        // Help function
+        function showHelp() {
+            alert("للمساعدة في الاستعلام:\n\n1. تأكد من إدخال رقم الهوية الصحيح (10 أرقام)\n2. تأكد من إدخال رقم الجوال المسجل في الطلب\n3. للدعم الفني: 00966114670000");
+        }
+        
+        // Notification system (reused from main page)
+        function showNotification(message, type = "info") {
+            const existingNotifications = document.querySelectorAll(".notification");
+            existingNotifications.forEach(notification => notification.remove());
+            
+            const notification = document.createElement("div");
+            notification.className = `notification notification-${type}`;
+            
+            const icon = getNotificationIcon(type);
+            notification.innerHTML = `
+                <div class=\"notification-content\">
+                    <i class=\"${icon}\"></i>
+                    <span>${message}</span>
+                </div>
+                <button class=\"notification-close\" onclick=\"this.parentElement.remove()\">
+                    <i class=\"fas fa-times\"></i>
+                </button>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                padding: 1rem 1.5rem;
+                z-index: 3000;
+                max-width: 400px;
+                border-left: 4px solid ${getNotificationColor(type)};
+                animation: slideInRight 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        function getNotificationIcon(type) {
+            const icons = {
+                success: "fas fa-check-circle",
+                error: "fas fa-exclamation-circle",
+                warning: "fas fa-exclamation-triangle",
+                info: "fas fa-info-circle"
+            };
+            return icons[type] || icons.info;
+        }
+        
+        function getNotificationColor(type) {
+            const colors = {
+                success: "#27ae60",
+                error: "#e74c3c",
+                warning: "#f39c12",
+                info: "#3498db"
+            };
+            return colors[type] || colors.info;
+        }
+        
+        // Add animation styles
+        const style = document.createElement("style");
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            .notification-content {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                flex: 1;
+            }
+            .notification-content i {
+                font-size: 1.2rem;
+            }
+            .notification-close {
+                background: none;
+                border: none;
+                color: #999;
+                cursor: pointer;
+                padding: 0.25rem;
+                border-radius: 50%;
+                transition: all 0.2s ease;
+            }
+            .notification-close:hover {
+                background: #f0f0f0;
+                color: #666;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
+
